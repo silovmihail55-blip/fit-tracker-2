@@ -16,16 +16,16 @@ const (
 // WalkingSpentCalories рассчитывает калории, сожжённые при ходьбе
 func WalkingSpentCalories(steps int, weight, height float64, duration time.Duration) (float64, error) {
 	if steps <= 0 {
-		return 0, errors.New("Количество шагов должно быть больше 0")
+		return 0, errors.New("number of steps must be greater than zero")
 	}
 	if weight <= 0 {
-		return 0, errors.New("Вес должен быть больше 0")
+		return 0, errors.New("weight must be greater than zero")
 	}
 	if height <= 0 {
-		return 0, errors.New("Рост должен быть больше 0")
+		return 0, errors.New("height must be greater than zero")
 	}
 	if duration <= 0 {
-		return 0, errors.New("Длительность должна быть больше 0")
+		return 0, errors.New("duration must be greater than zero")
 	}
 
 	avgSpeed := MeanSpeed(steps, height, duration)
@@ -35,16 +35,16 @@ func WalkingSpentCalories(steps int, weight, height float64, duration time.Durat
 // RunningSpentCalories рассчитывает калории, сожжённые при беге
 func RunningSpentCalories(steps int, weight, height float64, duration time.Duration) (float64, error) {
 	if steps <= 0 {
-		return 0, errors.New("Количество шагов должно быть больше 0")
+		return 0, errors.New("number of steps must be greater than zero")
 	}
 	if weight <= 0 {
-		return 0, errors.New("Вес должен быть больше 0")
+		return 0, errors.New("weight must be greater than zero")
 	}
 	if height <= 0 {
-		return 0, errors.New("Рост должен быть больше 0")
+		return 0, errors.New("height must be greater than zero")
 	}
 	if duration <= 0 {
-		return 0, errors.New("Длительность должна быть больше 0")
+		return 0, errors.New("duration must be greater than zero")
 	}
 
 	avgSpeed := MeanSpeed(steps, height, duration)

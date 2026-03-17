@@ -13,25 +13,19 @@ type DataParser interface {
 
 // Info обрабатывает набор строк через парсер, выводит результат при успешном парсинге
 func Info(dataset []string, dp DataParser) {
-	parsedOK := false
-
 	for _, value := range dataset {
 		if err := dp.Parse(value); err != nil {
 			log.Println(err)
 			continue
 		}
-		parsedOK = true
-	}
 
-	if !parsedOK {
-		return
-	}
+		// Переместили сюда обработку ActionInfo прямо после успешного парсинга
+		str, err := dp.ActionInfo()
+		if err != nil {
+			log.Println(err)
+			continue
+		}
 
-	str, err := dp.ActionInfo()
-	if err != nil {
-		log.Println(err)
-		return
+		fmt.Print(str)
 	}
-
-	fmt.Print(str)
 }

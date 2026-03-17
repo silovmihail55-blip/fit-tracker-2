@@ -20,29 +20,28 @@ type DaySteps struct {
 
 // Parse разбирает строку вида "шаги,длительность" и заполняет поля структуры
 func (ds *DaySteps) Parse(datastring string) (err error) {
-	var ers error
 	var step int
 	var dur time.Duration
 
 	spl := strings.Split(datastring, ",")
 	if len(spl) != 2 {
-		return errors.New("Данные неправильного формата, должно быть: 678,0h50m")
+		return errors.New("invalid data format, should be: 678,0h50m")
 	}
 
-	step, ers = strconv.Atoi(spl[0])
-	if ers != nil {
-		return ers
+	step, err = strconv.Atoi(spl[0]) // Используем err вместо ers
+	if err != nil {
+		return err
 	}
 	if step <= 0 {
-		return errors.New("Количество шагов должно быть больше 0")
+		return errors.New("number of steps must be greater than zero")
 	}
 
-	dur, ers = time.ParseDuration(spl[1])
-	if ers != nil {
-		return ers
+	dur, err = time.ParseDuration(spl[1])
+	if err != nil {
+		return err
 	}
 	if dur <= 0 {
-		return errors.New("Длительность должна быть больше 0")
+		return errors.New("duration must be greater than zero")
 	}
 
 	ds.Steps = step
